@@ -8,6 +8,7 @@ describe('ProductController', () => {
 
   const requestMock = {
     query: {},
+    body: {},
   } as unknown as Request;
 
   const statusResponseMock = {
@@ -52,5 +53,22 @@ describe('ProductController', () => {
         name: 'notebook', price: '5$'
       });
     })
+  })
+
+  describe('create', () => {
+
+    it('should return a 201 status and a created product', () => {
+      requestMock.body = {
+        name: 'keyboard',
+        price: '50$'
+      }
+
+      controller.create(requestMock, responseMock);
+      expect(responseMock.status).toHaveBeenCalledWith(201);
+      expect(statusResponseMock.send).toHaveBeenCalledWith({
+        name: requestMock.body.name,
+        price: requestMock.body.price,
+      });
+    });
   })
 });
