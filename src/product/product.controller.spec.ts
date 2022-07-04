@@ -64,7 +64,7 @@ describe('ProductController', () => {
       }
 
       controller.create(requestMock, responseMock);
-      expect(responseMock.status).toHaveBeenCalledWith(201);
+      expect(responseMock.status).toHaveBeenLastCalledWith(201);
       expect(statusResponseMock.send).toHaveBeenCalledWith({
         name: requestMock.body.name,
         price: requestMock.body.price,
