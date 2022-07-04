@@ -1,4 +1,4 @@
-import { Controller, Get, Req, Res } from '@nestjs/common';
+import { Controller, Get, Post, Req, Res } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { Request, Response } from 'express'; 
 @Controller('product')
@@ -17,5 +17,19 @@ export class ProductController {
     }
 
     response.status(200).send({ name: 'notebook', price: '5$' });
+  }
+
+  @Post()
+  async create(
+    @Req() request: Request,
+    @Res() response: Response,
+  ) {
+    const { name, price } = request.body;
+
+    if (!name || !price) {
+      response.status(400).send({ msg: 'missing body params' })
+    }
+
+    response.status(201).send({ name: name, price: price });
   }
 }
