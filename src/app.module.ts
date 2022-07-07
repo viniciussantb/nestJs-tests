@@ -19,6 +19,7 @@ import { User } from './user/entities/user.entity';
       database: process.env.TYPEORM_DATABASE,
       autoLoadEntities: true,
       synchronize: true,
+      entities: [User]
     }),
     ProductModule,
     UserModule,

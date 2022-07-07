@@ -8,11 +8,12 @@ import { User } from './entities/user.entity';
 export class UserService {
   async create(createUserDto: CreateUserDto) {
     return await getConnection()
-      .createQueryBuilder()
-      .insert()
-      .into(User)
-      .values(createUserDto)
-      .execute();
+    .createQueryBuilder()
+    .insert()
+    .into(User)
+    .values(createUserDto)
+    .execute();
+
   }
 
   findAll() {
